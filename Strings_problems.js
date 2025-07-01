@@ -31,3 +31,35 @@ function isPangram(str) {
 }
 
 console.log(isPangram(sentence)); // true
+
+//? Problem 2 :- Tokenize a string
+
+/* 
+Input: Banana and Mango
+Token: a
+Output: [B, n, n,  ,nd M, ngo]
+*/
+
+//* Time Complexity :- O(n) where n is the length of the string
+//* Space Complexity :- O(n) due to the space used by the output array
+
+let input = "Banana and Mango";
+let token = "a";
+function tokenizeTheString(str, token) {
+  if (str.length === 0) return [];
+  let tokenArray = [];
+  let previousLiteralTemp = ""; // temp variable to store the previous literal
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === token) {
+      tokenArray.push(previousLiteralTemp);
+      previousLiteralTemp = "";
+    } else {
+      previousLiteralTemp += str[i];
+    }
+  }
+  tokenArray.push(previousLiteralTemp);
+  return tokenArray;
+}
+
+console.log(tokenizeTheString(input, token)); // [B, n, n,  ,nd M, ngo]
