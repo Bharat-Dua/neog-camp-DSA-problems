@@ -167,3 +167,31 @@ function findMinMaxWordInString(str) {
 
 console.log(findMinMaxWordInString(inputStr));
 ["smallestWord: a, largestWord: This is a test string"];
+
+//? Problem 5 :- - Given a string replace string with number times each character is repeated.
+
+/*
+    Input: aaacdbbbb
+    Output: a3c1d1b4
+*/
+
+function replaceStringCharWithItsOccurence(str) {
+  // count the each char frequency
+
+  let frequency = {};
+  for (const char of str) {
+    frequency[char] = frequency[char] + 1 || 1;
+  }
+
+  // output string based on the frequency
+  let output = "";
+  for (const charKey of str) {
+    if (frequency[charKey] > 0) {
+      output += charKey + frequency[charKey];
+      frequency[charKey] = 0;
+    }
+  }
+  return output;
+}
+
+console.log(replaceStringCharWithItsOccurence("aaacdbbbb"));
