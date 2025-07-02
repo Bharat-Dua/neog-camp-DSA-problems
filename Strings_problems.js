@@ -63,3 +63,43 @@ function tokenizeTheString(str, token) {
 }
 
 console.log(tokenizeTheString(input, token)); // [B, n, n,  ,nd M, ngo]
+
+//? Problem 3 :- Given a string count the number of time each word has occurred in the string.
+/*
+Input: "Hello from hello to hello"
+
+Output: {
+  "Hello":1,
+  "from":1,
+  "hello":2,
+  "to":1
+}
+*/
+
+//* using 2d array to store the frequency of each word
+//* Time Complexity :- O(n^2) where n is the number of words and m is the length of the word
+//* Space Complexity :- O(n) due to the space used by the 2d array
+
+let inputSentence = "Hello from hello to hello";
+
+function isWordPresentInArray(arr, word) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][0] === word) {
+      arr[i][1] += 1; // increment the frequency of the word
+      return true;
+    }
+  }
+  return false;
+}
+function countEachWordOccurence(str) {
+  let frequencyArray = []; // 2d array to store the frequency of each word
+  let words = str.split(" ");
+  for (const word of words) {
+    if (!isWordPresentInArray(frequencyArray, word)) {
+      frequencyArray.push([word, 1]); // if the word is not present in the array, add it with frequency 1
+    }
+  }
+  return frequencyArray;
+}
+
+console.log(countEachWordOccurence(inputSentence));
