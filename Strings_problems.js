@@ -103,3 +103,67 @@ function countEachWordOccurence(str) {
 }
 
 console.log(countEachWordOccurence(inputSentence));
+
+//? Problem 4 :- Find largest and smallest word in  a string
+
+//* brute force approach :-
+
+//* Time complexity :- o(n)
+//* Space complexity :- o(n)
+
+/*
+Input : "This is a test string"
+Output : Minimum length word: a
+         Maximum length word: string
+*/
+let inputStr = "This is a test string";
+function findMinMaxWordInString(str) {
+  if (!str) return ["smallestWord: '', largestWord: ''"];
+  str = str.split(" ");
+  let smallestWord = str[0];
+  let largestWord = inputStr[0];
+  for (const word of str) {
+    if (word.length > largestWord.length) {
+      largestWord = word;
+    }
+    if (word.length < smallestWord.length) {
+      smallestWord = word;
+    }
+  }
+  return [`smallestWord: ${smallestWord},largestWord: ${largestWord}`];
+}
+
+console.log(findMinMaxWordInString(inputStr));
+
+//* optimised approach
+//* TC - O(N) SC- O(1);
+
+function findMinMaxWordInString(str) {
+  if (!str) return ["smallestWord: '', largestWord: ''"];
+  let smallestWord = str.trim();
+  let largestWord = str.trim();
+  let currentWord = "";
+  let isWord = false;
+
+  for (let i = 0; i < str.length; i++) {
+    let currentChar = str[i];
+    if (currentChar === " " || i === str.length) {
+      if (isWord) {
+        if (currentWord.length > largestWord.length) {
+          largestWord = currentWord;
+        }
+        if (currentWord.length < smallestWord.length) {
+          smallestWord = currentWord;
+        }
+        currentWord = "";
+      }
+    } else {
+      currentWord += currentChar;
+      isWord = true;
+    }
+  }
+  return [`smallestWord: ${smallestWord}, largestWord: ${largestWord}`];
+}
+
+console.log(findMinMaxWordInString(inputStr));
+["smallestWord: a, largestWord: This is a test string"];
